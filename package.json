@@ -1,0 +1,24 @@
+{
+  "name": "cypress-mastery",
+  "version": "1.0.0",
+  "description": "cypress to",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "login-test": "npx cypress run  --spec 'cypress/e2e/login.cy.js' --browser chrome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdimayuga/cypress-mastery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdimayuga/cypress-mastery/issues"
+  },
+  "homepage": "https://github.com/gdimayuga/cypress-mastery#readme",
+  "dependencies": {
+    "cypress": "^14.2.1"
+  }
+}
