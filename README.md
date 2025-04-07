@@ -36,7 +36,7 @@ It types the username standard_user and an incorrect password secret_saucse.
 It clicks the login button.
 Verifies that the error message container is visible, indicating a failed login attempt.
 
-Running Tests
+## Running Tests
 You can run the tests in both headed (interactive) and headless modes:
 
 1. Headed Mode (Interactive)
