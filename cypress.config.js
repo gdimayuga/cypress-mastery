@@ -1,4 +1,4 @@
-// npx cypress run --record --key d0457e00-4a25-4686-b7bc-cf5d8deb1aad
+// npx cypress run --record --key b57c8813-d09d-4baa-8d1f-e2ddeb129388
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
