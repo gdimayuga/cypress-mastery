@@ -1,3 +1,5 @@
+
+// npx cypress run --record --key b57c8813-d09d-4baa-8d1f-e2ddeb129388
 describe('login test suite', () => {
   it('login', () => {
     cy.visit('https://www.saucedemo.com/')
