@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "login-test": "npx cypress run --record --key b57c8813-d09d-4baa-8d1f-e2ddeb129388  --spec 'cypress/e2e/login.cy.js' --browser chrome"
+    "login-test": "npx cypress run --record --key b57c8813-d09d-4baa-8d1f-e2ddeb129388  --spec 'cypress/e2e/Login.cy.js' --browser chrome"
   },
   "repository": {
     "type": "git",
