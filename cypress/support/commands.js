@@ -42,32 +42,31 @@ Cypress.Commands.add('addToCartAndVerify', (productSelector, productName) => {
     cy.get('.cart_item').should('have.length', 1)
     cy.get('.inventory_item_name').should('contain', productName)
   })
-  
+
+  Cypress.Commands.add('takeScreenshot', (name) => {
+    const timestamp = new Date().toISOString().replace(/[:]/g, '-');
+    cy.screenshot(`${name}-${timestamp}`);
+  });
+
   Cypress.Commands.add('addToCartAndCheckout', (productSelector, productName, firstName, lastName, postalCode) => {
     cy.addToCartAndVerify(productSelector, productName);
-    cy.screenshot('checkout-4-8-2025');
     cy.get('[data-test="checkout"]').click();
   
     cy.url().should('include', 'checkout-step-one.html');
-    cy.screenshot('checkout-step-one-4-8-2025');
     cy.get('[data-test="firstName"]').type(firstName);
     cy.get('[data-test="lastName"]').type(lastName);
     cy.get('[data-test="postalCode"]').type(postalCode);
-    cy.screenshot('checkout-step-one-details-added-4-8-2025');
       cy.get('[data-test="continue"]').should('be.visible').click();
   
     cy.get('[data-test="item-quantity"]').should('have.length', 1);
 
     cy.url().should('include', 'checkout-step-two.html');
-    cy.screenshot('checkout-step-two-4-8-2025');
     cy.get('[data-test="finish"]').should('be.visible').click();
   
     cy.get('[data-test="complete-header"]').should('contain', 'Thank you for your order!');
-    cy.screenshot('complete-4-8-2025');
 
 
     cy.get('[data-test="back-to-products"]').should('be.visible').click();
     cy.url().should('include', 'inventory.html');
-    cy.screenshot('postcheckout-4-8-2025');
   });
 
