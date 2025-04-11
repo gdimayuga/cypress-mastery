@@ -25,7 +25,140 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import { generateCustomerData } from './utils'
 
-Cypress.Commands.add('auths', () => { // FUNCTION OR METHOD --> Then i-call natin sya sa spec or test file natin.
+Cypress.Commands.add('authSauceDemo', (customerData = generateCustomerData()) => {
+  cy.get('[name="name"]').type('Sova')
+  cy.get('[data-qa="signup-email"]').type(customerData.username + '@gmail.com')
+  cy.get('[data-qa="signup-button"]').click()
+})
+
+Cypress.Commands.add('LoginBeforeCheckout', (customerData = generateCustomerData()) => {
+  cy.get('[name="name"]').type('Sova')
+  cy.get('[data-qa="signup-email"]').type(customerData.username + '@gmail.com')
+  cy.get('[data-qa="signup-button"]').click()
+  cy.get('#id_gender1').click()
+  cy.get('[data-qa="password"]').type(customerData.password)
+  cy.get('[data-qa="days"]').select('10')
+  cy.get('[data-qa="months"]').select('October')
+  cy.get('[data-qa="years"]').select('2000')
+  cy.get('[data-qa="first_name"]').type('Sova')
+  cy.get('[data-qa="last_name"]').type(customerData.lastName)
+  cy.get('[data-qa="company"]').type(customerData.company)
+  cy.get('[id="address1"]').type(customerData.address)
+  cy.get('[id="address2"]').type(customerData.address2)
+  cy.get('[data-qa="country"]').select('India')
+  cy.get('[data-qa="state"]').type(customerData.state)
+  cy.get('[data-qa="city"]').type(customerData.city)
+  cy.get('[data-qa="zipcode"]').type(customerData.zipCode)
+  cy.get('[data-qa="mobile_number"]').type(customerData.phoneNumber)
+  cy.contains('Create Account').click()
+  cy.get('[data-qa="continue-button"]').click()
+  cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+  cy.get('[data-qa="login-email"]').type(customerData.username + '@gmail.com')
+  cy.get('[data-qa="login-password"]').type(customerData.password)
+  cy.get('[data-qa="login-button"]').click()
+  cy.contains('Logged in as ' + 'Sova')
+  cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
+  cy.get(':nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').click()
+  cy.get('u').click()
+  cy.url().should('contain', 'view_cart')
+  cy.get('.col-sm-6 > .btn').click()
+  cy.verifyDetails(customerData.address)
+  cy.get('.form-control').type('N/A')
+  cy.contains('Place Order').click()
+  cy.get('[data-qa="name-on-card"]').type('Sova ' + customerData.lastName)
+  cy.get('[data-qa="card-number"]').type('1234 4567 7890 1235')
+  cy.get('[data-qa="cvc"]').type('123')
+  cy.get('[data-qa="expiry-month"]').type('10')
+  cy.get('[data-qa="expiry-year"]').type('2030')
+  cy.get('[data-qa="pay-button"]').click()
+  cy.contains('Congratulations! Your order has been confirmed!')
+  cy.get('.nav > :nth-child(5)').click()
+  cy.contains('Your account has been permanently deleted!')
+
+})
+
+Cypress.Commands.add('RegisterBeforeCheckout', (customerData = generateCustomerData()) => {
+  cy.get('#id_gender1').click()
+  cy.get('[data-qa="password"]').type(customerData.password)
+  cy.get('[data-qa="days"]').select('10')
+  cy.get('[data-qa="months"]').select('October')
+  cy.get('[data-qa="years"]').select('2000')
+  cy.get('[data-qa="first_name"]').type('Sova')
+  cy.get('[data-qa="last_name"]').type(customerData.lastName)
+  cy.get('[data-qa="company"]').type(customerData.company)
+  cy.get('[id="address1"]').type(customerData.address)
+  cy.get('[id="address2"]').type(customerData.address2)
+  cy.get('[data-qa="country"]').select('India')
+  cy.get('[data-qa="state"]').type(customerData.state)
+  cy.get('[data-qa="city"]').type(customerData.city)
+  cy.get('[data-qa="zipcode"]').type(customerData.zipCode)
+  cy.get('[data-qa="mobile_number"]').type(customerData.phoneNumber)
+  cy.contains('Create Account').click()
+  cy.contains('Account Created!')
+  cy.contains('Continue').click()
+  cy.contains('Logged in as ' + 'Sova')
+  cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
+  cy.get(':nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').click()
+  cy.get('u').click()
+  cy.url().should('contain', 'view_cart')
+  cy.get('.col-sm-6 > .btn').click()
+  cy.verifyDetails(customerData.address)
+  cy.get('.form-control').type('N/A')
+  cy.contains('Place Order').click()
+  cy.get('[data-qa="name-on-card"]').type('Sova ' + customerData.lastName)
+  cy.get('[data-qa="card-number"]').type('1234 4567 7890 1235')
+  cy.get('[data-qa="cvc"]').type('123')
+  cy.get('[data-qa="expiry-month"]').type('10')
+  cy.get('[data-qa="expiry-year"]').type('2030')
+  cy.get('[data-qa="pay-button"]').click()
+  cy.contains('Congratulations! Your order has been confirmed!')
+  cy.get('.nav > :nth-child(5)').click()
+  cy.contains('Your account has been permanently deleted!')
+
+})
+
+Cypress.Commands.add('RegisterwhileCheckout', (customerData = generateCustomerData()) => {
+  cy.get('#id_gender1').click()
+  cy.get('[data-qa="password"]').type(customerData.password)
+  cy.get('[data-qa="days"]').select('10')
+  cy.get('[data-qa="months"]').select('October')
+  cy.get('[data-qa="years"]').select('2000')
+  cy.get('[data-qa="first_name"]').type('Sova')
+  cy.get('[data-qa="last_name"]').type(customerData.lastName)
+  cy.get('[data-qa="company"]').type(customerData.company)
+  cy.get('[id="address1"]').type(customerData.address)
+  cy.get('[id="address2"]').type(customerData.address2)
+  cy.get('[data-qa="country"]').select('India')
+  cy.get('[data-qa="state"]').type(customerData.state)
+  cy.get('[data-qa="city"]').type(customerData.city)
+  cy.get('[data-qa="zipcode"]').type(customerData.zipCode)
+  cy.get('[data-qa="mobile_number"]').type(customerData.phoneNumber)
+  cy.contains('Create Account').click()
+  cy.contains('Account Created!')
+  cy.contains('Continue').click()
+  cy.contains('Logged in as ' + 'Sova')
+  cy.get('.shop-menu > .nav > :nth-child(3) > a').click()
+  cy.get('.col-sm-6 > .btn').click()
+  cy.verifyDetails(customerData.address)
+  cy.get('.form-control').type('N/A')
+  cy.contains('Place Order').click()
+  cy.get('[data-qa="name-on-card"]').type('Sova ' + customerData.lastName)
+  cy.get('[data-qa="card-number"]').type('1234 4567 7890 1235')
+  cy.get('[data-qa="cvc"]').type('123')
+  cy.get('[data-qa="expiry-month"]').type('10')
+  cy.get('[data-qa="expiry-year"]').type('2030')
+  cy.get('[data-qa="pay-button"]').click()
+  cy.contains('Congratulations! Your order has been confirmed!')
+  cy.get('.nav > :nth-child(5)').click()
+  cy.contains('Your account has been permanently deleted!')
+})
+
+Cypress.Commands.add('verifyDetails', (State) => {
+  cy.get('#address_delivery > :nth-child(4)').contains(State)
+  cy.get('#address_invoice > :nth-child(4)').contains(State)
+})
+
+Cypress.Commands.add('auth', () => { // FUNCTION OR METHOD --> Then i-call natin sya sa spec or test file natin.
   cy.fixture('credentials').then((credentials) => {
     const credential = credentials[0]
     cy.get('input[id="customer.firstName"]').type(credential.firstName);
@@ -59,6 +192,20 @@ Cypress.Commands.add('addToCartAndVerify', (productSelector, productName) => {
     cy.get('.cart_item').should('have.length', 1)
     cy.get('.inventory_item_name').should('contain', productName)
   })
+
+  Cypress.Commands.add('saveCart', () => {
+    cy.window().then((win) => {
+      const cart = win.localStorage.getItem('cart-contents') || '[]';
+      Cypress.env('savedCart', cart);
+    });
+  });
+
+  Cypress.Commands.add('restoreCart', () => {
+    const cart = Cypress.env('savedCart') || '[]';
+    cy.window().then((win) => {
+      win.localStorage.setItem('cart-contents', cart);
+    });
+  });
 
   Cypress.Commands.add('takeScreenshot', (name) => {
     const timestamp = new Date().toISOString().replace(/[:]/g, '-');
