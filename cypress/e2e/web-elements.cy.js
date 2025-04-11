@@ -21,6 +21,7 @@ describe('Radio Button, Checkbox, Dropdown Menu', () => {
    cy.get('#radio-button3').should('not.be.checked')
 });
 it('Should successfully select Philippines', () => {
+
     cy.visit('/dropdowns')
     // //select[contains(@id, 'dropdown-menu')]
     cy.xpath("//select[contains(@id, 'dropdown-menu')]").select('Philippines').should('be.visible')

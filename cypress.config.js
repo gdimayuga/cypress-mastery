@@ -16,7 +16,7 @@ module.exports = defineConfig({
   },
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
-    baseUrl: 'https://qa-practice.netlify.app/',
+    testIsolation: false,
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
     },

@@ -25,13 +25,26 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import { generateCustomerData } from './utils'
 
-Cypress.Commands.add('auth', () => { // FUNCTION OR METHOD --> Then i-call natin sya sa spec or test file natin.
+Cypress.Commands.add('auths', () => { // FUNCTION OR METHOD --> Then i-call natin sya sa spec or test file natin.
   cy.fixture('credentials').then((credentials) => {
-    cy.visit('https://www.saucedemo.com/')
-    const credentialz = credentials[0]
-      cy.get('[data-test="username"]').type(credentialz.username)
-      cy.get('[data-test="password"]').type(credentialz.password)
-      cy.get('[data-test="login-button"]').click()
+    const credential = credentials[0]
+    cy.get('input[id="customer.firstName"]').type(credential.firstName);
+    cy.get('input[id="customer.lastName"]').type(credential.lastName);
+    cy.get('input[id="customer.address.street"]').type(credential.address);
+    cy.get('input[id="customer.address.city"]').type(credential.city);
+    cy.get('input[id="customer.address.state"]').type(credential.state);
+    cy.get('input[id="customer.address.zipCode"]').type(credential.zipCode);
+    cy.get('input[id="customer.phoneNumber"]').type(credential.phoneNumber);
+    cy.get('input[id="customer.ssn"]').type(credential.ssn);
+    cy.get('input[id="customer.username"]').type(credential.username);
+    cy.get('input[id="customer.password"]').type(credential.password);
+    cy.get('input[id="repeatedPassword"]').type(credential.password);
+    
+    cy.get('input[value="Register"]').click();
+    cy.contains('Log Out').should('be.visible').click();
+    cy.get('input[name="username"]').type(credential.username);
+    cy.get('input[name="password"]').type(credential.password);
+    cy.get('input[value="Log In"]').click();
   });
 });
 
