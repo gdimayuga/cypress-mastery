@@ -1,11 +1,11 @@
 describe('Cart Persistence Test', () => {
   beforeEach(() => {
+    cy.clearAllCookies()
+    cy.clearLocalStorage()
     cy.visit('http://automationexercise.com')
-    // cy.clearAllCookies()
-    // cy.clearLocalStorage()
   });
  
-  it.skip('Place Order: Register while Checkout', () => {
+  it('Place Order: Register while Checkout', () => {
     cy.get('.productinfo a[data-product-id="1"]:visible').click()
     cy.contains('View Cart').click()
     cy.contains('Proceed To Checkout').click()
@@ -14,7 +14,7 @@ describe('Cart Persistence Test', () => {
     cy.RegisterwhileCheckout()
   });
 
-  it.skip('Place Order: Register before Checkout', () => {
+  it('Place Order: Register before Checkout', () => {
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
     cy.authSauceDemo()
     cy.RegisterBeforeCheckout()
