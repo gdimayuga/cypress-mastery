@@ -23,6 +23,6 @@ describe('Cart Persistence Test', () => {
   it('Place Order: Login before Checkout', () => {
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
     cy.LoginBeforeCheckout()
-    
+    cy.screenshot('screenshot')
   });
 });
