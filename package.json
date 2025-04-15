@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "login-test": "npx cypress run --record --key d0457e00-4a25-4686-b7bc-cf5d8deb1aad  --spec 'cypress/e2e/Login.cy.js' --browser chrome",
     "run-e2e": "npx cypress run --record --key d0457e00-4a25-4686-b7bc-cf5d8deb1aad --spec 'cypress/e2e/e2e.cy.js' --browser chrome",
-    "exercises": "npx cypress run --spec 'cypress/e2e/cart-persistent.cy.js' --browser chrome"
+    "ecom-flow": "npx cypress run --record --key d0457e00-4a25-4686-b7bc-cf5d8deb1aad --spec 'cypress/e2e/ecom-flow.cy.js' --browser chrome",
+    "exercises": "npx cypress run --record --key d0457e00-4a25-4686-b7bc-cf5d8deb1aad --spec 'cypress/e2e/cart-persistent.cy.js' --browser chrome"
   },
   "repository": {
     "type": "git",
