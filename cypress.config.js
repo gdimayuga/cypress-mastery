@@ -6,7 +6,6 @@ module.exports = defineConfig({
   experimentalStudio: true,
   viewportHeight:1080,
   viewportWidth:1920,
-  reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
     reportPageTitle: 'custom-title',
@@ -14,7 +13,6 @@ module.exports = defineConfig({
     inlineAssets: true,
     saveAllAttempts: false,
   },
-  reporter: 'cypress-mochawesome-reporter',
   e2e: {
     testIsolation: true,
   },
