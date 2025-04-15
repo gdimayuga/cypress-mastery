@@ -1,4 +1,4 @@
-describe('Cart Persistence Test', () => {
+describe('Exercises 14-16', () => {
   beforeEach(() => {
     cy.clearAllCookies()
     cy.clearLocalStorage()
