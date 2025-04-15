@@ -26,6 +26,7 @@
     "cypress": "^14.3.0",
     "cypress-mochawesome-reporter": "^3.8.2",
     "cypress-xpath": "^2.0.1",
-    "xpath": "^0.0.34"
+    "xpath": "^0.0.34",
+    "mochawesome": "^7.1.3"
   }
 }
