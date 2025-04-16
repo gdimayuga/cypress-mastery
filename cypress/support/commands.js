@@ -32,6 +32,7 @@ Cypress.Commands.add('authSauceDemo', (customerData = generateCustomerData()) =>
 })
 
 Cypress.Commands.add('LoginBeforeCheckout', (customerData = generateCustomerData()) => {
+  cy.url().should('contain','login')
   cy.get('[name="name"]').type('Sova')
   cy.get('[data-qa="signup-email"]').type(customerData.username + '@gmail.com')
   cy.get('[data-qa="signup-button"]').click()
@@ -51,6 +52,7 @@ Cypress.Commands.add('LoginBeforeCheckout', (customerData = generateCustomerData
   cy.get('[data-qa="zipcode"]').type(customerData.zipCode)
   cy.get('[data-qa="mobile_number"]').type(customerData.phoneNumber)
   cy.contains('Create Account').click()
+  cy.url().should('contain','account_created')
   cy.get('[data-qa="continue-button"]').click()
   cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
   cy.get('[data-qa="login-email"]').type(customerData.username + '@gmail.com')
@@ -65,6 +67,7 @@ Cypress.Commands.add('LoginBeforeCheckout', (customerData = generateCustomerData
   cy.verifyDetails(customerData.address)
   cy.get('.form-control').type('N/A')
   cy.contains('Place Order').click()
+  cy.url().should('contain','payment')
   cy.get('[data-qa="name-on-card"]').type('Sova ' + customerData.lastName)
   cy.get('[data-qa="card-number"]').type('1234 4567 7890 1235')
   cy.get('[data-qa="cvc"]').type('123')
@@ -73,11 +76,13 @@ Cypress.Commands.add('LoginBeforeCheckout', (customerData = generateCustomerData
   cy.get('[data-qa="pay-button"]').click()
   cy.contains('Congratulations! Your order has been confirmed!')
   cy.get('.nav > :nth-child(5)').click()
+  cy.url().should('contain','delete_account')
   cy.contains('Your account has been permanently deleted!')
 
 })
 
 Cypress.Commands.add('RegisterBeforeCheckout', (customerData = generateCustomerData()) => {
+  cy.url().should('contain','signup')
   cy.get('#id_gender1').click()
   cy.get('[data-qa="password"]').type(customerData.password)
   cy.get('[data-qa="days"]').select('10')
@@ -95,6 +100,7 @@ Cypress.Commands.add('RegisterBeforeCheckout', (customerData = generateCustomerD
   cy.get('[data-qa="mobile_number"]').type(customerData.phoneNumber)
   cy.contains('Create Account').click()
   cy.contains('Account Created!')
+  cy.url().should('contain','account_created')
   cy.contains('Continue').click()
   cy.contains('Logged in as ' + 'Sova')
   cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
@@ -105,6 +111,7 @@ Cypress.Commands.add('RegisterBeforeCheckout', (customerData = generateCustomerD
   cy.verifyDetails(customerData.address)
   cy.get('.form-control').type('N/A')
   cy.contains('Place Order').click()
+  cy.url().should('contain','payment')
   cy.get('[data-qa="name-on-card"]').type('Sova ' + customerData.lastName)
   cy.get('[data-qa="card-number"]').type('1234 4567 7890 1235')
   cy.get('[data-qa="cvc"]').type('123')
@@ -113,11 +120,13 @@ Cypress.Commands.add('RegisterBeforeCheckout', (customerData = generateCustomerD
   cy.get('[data-qa="pay-button"]').click()
   cy.contains('Congratulations! Your order has been confirmed!')
   cy.get('.nav > :nth-child(5)').click()
+  cy.url().should('contain','delete_account')
   cy.contains('Your account has been permanently deleted!')
 
 })
 
 Cypress.Commands.add('RegisterwhileCheckout', (customerData = generateCustomerData()) => {
+  cy.url().should('contain','signup')
   cy.get('#id_gender1').click()
   cy.get('[data-qa="password"]').type(customerData.password)
   cy.get('[data-qa="days"]').select('10')
@@ -135,6 +144,7 @@ Cypress.Commands.add('RegisterwhileCheckout', (customerData = generateCustomerDa
   cy.get('[data-qa="mobile_number"]').type(customerData.phoneNumber)
   cy.contains('Create Account').click()
   cy.contains('Account Created!')
+  cy.url().should('contain','account_created')
   cy.contains('Continue').click()
   cy.contains('Logged in as ' + 'Sova')
   cy.get('.shop-menu > .nav > :nth-child(3) > a').click()
@@ -142,6 +152,7 @@ Cypress.Commands.add('RegisterwhileCheckout', (customerData = generateCustomerDa
   cy.verifyDetails(customerData.address)
   cy.get('.form-control').type('N/A')
   cy.contains('Place Order').click()
+  cy.url().should('contain','payment')
   cy.get('[data-qa="name-on-card"]').type('Sova ' + customerData.lastName)
   cy.get('[data-qa="card-number"]').type('1234 4567 7890 1235')
   cy.get('[data-qa="cvc"]').type('123')
@@ -150,6 +161,7 @@ Cypress.Commands.add('RegisterwhileCheckout', (customerData = generateCustomerDa
   cy.get('[data-qa="pay-button"]').click()
   cy.contains('Congratulations! Your order has been confirmed!')
   cy.get('.nav > :nth-child(5)').click()
+  cy.url().should('contain','delete_account')
   cy.contains('Your account has been permanently deleted!')
 })
 
