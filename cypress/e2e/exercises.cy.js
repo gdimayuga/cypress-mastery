@@ -12,17 +12,19 @@ describe('Exercises 14-16', () => {
     cy.contains('a', 'Register / Login').click()
     cy.authSauceDemo()
     cy.RegisterwhileCheckout()
+    cy.screenshot('exercise14-4-16-2025')
   });
 
   it('Place Order: Register before Checkout', () => {
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
     cy.authSauceDemo()
     cy.RegisterBeforeCheckout()
+    cy.screenshot('exercise15-4-16-2025')
   });
 
   it('Place Order: Login before Checkout', () => {
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
     cy.LoginBeforeCheckout()
-    cy.screenshot('screenshot')
+    cy.screenshot('exercise16-4-16-2025')
   });
 });
