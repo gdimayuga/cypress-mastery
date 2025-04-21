@@ -1,11 +1,12 @@
 describe('Registration', () => {
-  before(() => {
-    cy.clearAllCookies()
-    cy.clearLocalStorage()
-  });
-  
-  it('should create an account and login with the account', () => {
-    cy.visit('https://parabank.parasoft.com/parabank/register.htm')
-    cy.auth()
-  })
-})
+  beforeEach(() => {
+      cy.clearAllCookies()
+      cy.clearLocalStorage()
+      cy.visit('https://parabank.parasoft.com/parabank/register.htm')
+    });
+
+    it('Registers an account', () => {
+      cy.fillRegistrationForm()
+    })
+
+});
