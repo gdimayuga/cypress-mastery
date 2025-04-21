@@ -6,6 +6,6 @@ describe('Registration', () => {
   
   it('should create an account and login with the account', () => {
     cy.visit('https://parabank.parasoft.com/parabank/register.htm')
-    cy.auths()
+    cy.auth()
   })
 })

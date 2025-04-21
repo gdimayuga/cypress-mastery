@@ -24,6 +24,13 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import { generateCustomerData } from './utils'
+import { RegistrationPage } from './pages/registration.page'
+
+Cypress.Commands.add('fillRegistrationForm', (customerData = generateCustomerData()) => {
+  RegistrationPage.fillSignUpForm(customerData);
+  RegistrationPage.submitSignUpForm();
+  RegistrationPage.verifySignUpSuccess(customerData.username);
+});
 
 Cypress.Commands.add('authSauceDemo', (customerData = generateCustomerData()) => {
   cy.get('[name="name"]').type('Sova')

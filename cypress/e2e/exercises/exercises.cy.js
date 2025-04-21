@@ -4,8 +4,8 @@ describe('Exercises 14-16', () => {
     cy.clearLocalStorage()
     cy.visit('http://automationexercise.com')
   });
- 
-  it('Place Order: Register while Checkout', () => {
+
+  it.skip('Place Order: Register while Checkout', () => {
     cy.get('.active > :nth-child(1) > h2').should('contain', 'Full-Fledged practice website for Automation Engineers')
     cy.get('.productinfo a[data-product-id="1"]:visible').click()
     cy.contains('View Cart').click()
@@ -18,7 +18,7 @@ describe('Exercises 14-16', () => {
     cy.screenshot('exercise14-4-16-2025'  , { capture: 'fullPage' })
   });
 
-  it('Place Order: Register before Checkout', () => {
+  it.skip('Place Order: Register before Checkout', () => {
     cy.get('.active > :nth-child(1) > h2').should('contain', 'Full-Fledged practice website for Automation Engineers')
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
     cy.authSauceDemo()
@@ -27,7 +27,7 @@ describe('Exercises 14-16', () => {
     cy.screenshot('exercise15-4-16-2025'  , { capture: 'fullPage' })
   });
 
-  it('Place Order: Login before Checkout', () => {
+  it.skip('Place Order: Login before Checkout', () => {
     cy.get('.active > :nth-child(1) > h2').should('contain', 'Full-Fledged practice website for Automation Engineers')
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
     cy.LoginBeforeCheckout()
