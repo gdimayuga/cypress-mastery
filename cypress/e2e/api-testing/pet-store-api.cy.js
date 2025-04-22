@@ -39,11 +39,32 @@ describe('Store API Tests', () => {
 
   it('GET - Find purchase order by ID', () => {
     cy.api({
+      method: 'POST',
+      url: `https://petstore.swagger.io/v2/store/order`,
+      body: {
+        "shipDate": "2025-04-22T04:23:00.976+0000",
+        "status": "placed",
+        "complete": true,
+        "id": 1,
+        "petId": 0,
+      }
+    })
+    cy.api({
       method: 'GET',
       url: `https://petstore.swagger.io/v2/store/order/1`
     }).should((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('id');
+    });
+  });
+
+  it('GET - Find purchase order by invalid ID (should return 404)', () => {
+    cy.api({
+      method: 'GET',
+      url: `https://petstore.swagger.io/v2/store/order/abc`,
+      failOnStatusCode: false 
+    }).should((response) => {
+      expect(response.status).to.eq(404);
     });
   });
 
@@ -70,6 +91,32 @@ describe('Store API Tests', () => {
       expect(response.status).to.eq(200)
     })
   })
+
+  it('DELETE - Delete purchase order by ID', () => {
+    cy.api({
+      method: 'POST',
+      url: `https://petstore.swagger.io/v2/store/order`,
+      body: {
+        id: 3,
+        petId: 123,
+        quantity: 1,
+        shipDate: new Date().toISOString(),
+        status: 'placed',
+        complete: true
+      }
+    }).should((response) => {
+      expect(response.status).to.eq(200)
+    })
+    
+    cy.api({
+      method: 'DELETE',
+      url:  `https://petstore.swagger.io/v2/store/order/1`,
+      failOnStatusCode: false 
+    }).should((response) => {
+      expect(response.status).to.eq(404)
+    })
+  })
+
 });
 
 describe('User API Tests', () => {
