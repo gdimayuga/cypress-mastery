@@ -9,6 +9,8 @@ describe('E-Commerce Test Flow/Workflow', () => {
    cy.takeScreenshot('login')
  });
 
+
+ 
  it('Should successfully add to cart', () => {
   cy.addToCartAndVerify('[data-test="add-to-cart-sauce-labs-backpack"]', 'Sauce Labs Backpack')
   cy.takeScreenshot('add-to-cart')
